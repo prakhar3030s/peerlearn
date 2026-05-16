@@ -1,0 +1,18 @@
+{
+  "name": "peerlearn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PeerLearn monorepo - peer-to-peer academic video learning platform for university students",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "seed": "npm run seed --workspace backend",
+    "start": "npm run start --workspace backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
