@@ -53,11 +53,3 @@ PeerLearn is a peer-to-peer academic video learning platform for university stud
 
    - Start the backend on `http://localhost:5000`
    - Start the frontend on `http://localhost:5173`
-
-## Development Notes
-
-- **Dev Role Switcher** – Authentication is intentionally skipped in the initial phase. A dev-only role context is wired to support Student / Moderator / Admin roles, persisted in `localStorage` under `peerlearn-dev-role`. A UI switcher component will be added on top of this in later phases.
-- **Theme System** – The frontend uses CSS custom properties and Tailwind tokens for a full light/dark theme. The active theme is stored in `localStorage` under `peerlearn-theme` and applied via the `data-theme` attribute on the `html` element.
-- **API Client** – The frontend Axios instance points to `http://localhost:5000/api` by default, overridable with `VITE_API_URL`.
-- **YouTube Thumbnails** – YouTube thumbnails are derived from the video ID using `https://img.youtube.com/vi/{VIDEO_ID}/hqdefault.jpg`, so no YouTube API key is required for basic imagery.
-
