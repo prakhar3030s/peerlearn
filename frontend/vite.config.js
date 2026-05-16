@@ -4,13 +4,14 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isDev = mode === "development";
+  const apiUrl = process.env.VITE_API_URL || "http://localhost:5000";
 
   return {
     plugins: [react()],
     server: {
       proxy: {
         "/api": {
-          target: "http://localhost:5000",
+          target: isDev ? "http://localhost:5000" : apiUrl,
           changeOrigin: true,
         },
       },
@@ -46,4 +47,3 @@ export default defineConfig(({ mode }) => {
     },
   };
 });
-
