@@ -1,0 +1,28 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle background -->
+  <circle cx="100" cy="100" r="100" fill="url(#bgGradient)"/>
+
+  <!-- Two overlapping circles representing peers -->
+  <circle cx="70" cy="90" r="35" fill="none" stroke="white" stroke-width="3" opacity="0.9"/>
+  <circle cx="130" cy="90" r="35" fill="none" stroke="white" stroke-width="3" opacity="0.9"/>
+
+  <!-- Connection line representing learning -->
+  <line x1="105" y1="80" x2="95" y2="100" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="95" y1="100" x2="105" y2="120" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Center play button (representing video content) -->
+  <polygon points="100,75 115,90 100,105" fill="white" opacity="0.95"/>
+
+  <!-- Bottom accent - book pages -->
+  <path d="M 75 130 L 85 130 L 85 145 Q 85 148 82 148 L 75 148 Z" fill="white" opacity="0.8"/>
+  <path d="M 92 132 L 102 132 L 102 148 Q 102 150 99 150 L 92 150 Z" fill="white" opacity="0.9"/>
+  <path d="M 109 130 L 119 130 L 119 145 Q 119 148 116 148 L 109 148 Z" fill="white" opacity="0.8"/>
+</svg>
