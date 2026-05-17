@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useSearchParams, useParams, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowDownAZ,
   Clock,
@@ -379,14 +380,22 @@ export default function Browse() {
                   />
                 ) : (
                   <>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                      {submissions.map((submission) => (
-                        <VideoCard
-                          key={submission.id}
-                          submission={submission}
-                        />
-                      ))}
-                    </div>
+                    <motion.div layout className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      <AnimatePresence mode="popLayout">
+                        {submissions.map((submission) => (
+                          <motion.div
+                            layout
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.25, ease: "easeOut" }}
+                            key={submission.id}
+                          >
+                            <VideoCard submission={submission} />
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </motion.div>
                     {pagination && pagination.total > pagination.limit && (
                       <div className="mt-8 flex justify-center">
                         <Pagination
