@@ -93,6 +93,7 @@ export function Navbar() {
               {kbdHint}
             </span>
           </button>
+          <DarkModeToggle className="hidden md:inline-flex" />
           <NotificationBell />
           <div className="relative hidden items-center gap-2 md:flex">
             <Avatar
