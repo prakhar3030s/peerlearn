@@ -1,55 +1,179 @@
-# PeerLearn Monorepo
+# PeerLearn
 
-PeerLearn is a peer-to-peer academic video learning platform for university students. This monorepo contains both the React frontend and the Express backend.
+PeerLearn is a peer-to-peer academic video learning platform for university students. This monorepo contains both the React frontend and the Express backend, designed to let students browse syllabus content, submit and rate learning videos, and moderate contributions.
 
-## Structure
+---
 
-- `frontend` – Vite + React app, TailwindCSS, React Router, React Query
-- `backend` – Express API server using Supabase (PostgreSQL) as the primary database
+## Project overview
+
+- **Frontend**: React + Vite app with TailwindCSS, React Router, and React Query.
+- **Backend**: Express API server with Supabase as the primary data store.
+- **Purpose**: enable students to learn from peer-submitted videos, manage syllabus structure, and moderate content.
+
+---
+
+## Repository structure
+
+- `frontend/` — client application
+- `backend/` — API server and database integration
+- `package.json` — root monorepo package with workspace scripts
+- `README.md` — project overview and setup guide
+
+---
+
+## Key features
+
+- video submission and rating
+- syllabus browsing by branch, year, subject, unit, and topic
+- moderation workflow for flagged submissions and revisions
+- user authentication and notifications
+- admin management routes for syllabus, branches, subjects, units, and topics
+- progress tracking and leaderboard support
+
+---
+
+## Tech stack
+
+- Node.js
+- npm workspaces
+- React
+- Vite
+- TailwindCSS
+- Express
+- Supabase (PostgreSQL)
+- bcrypt
+- helmet
+- cors
+- express-rate-limit
+- express-validator
+- nodemailer
+- React Query
+- Radix UI
+- Framer Motion
+
+---
 
 ## Prerequisites
 
-- Node.js 18+ and npm
-- Supabase project (PostgreSQL)
-- Mailtrap account (for development email testing)
+- Node.js 18 or newer
+- npm
+- Supabase project with PostgreSQL credentials
+
+---
 
 ## Setup
 
-1. **Clone the repository** (or open the `peerlearn` folder in Cursor).
+1. Open the project root in your terminal:
 
-2. **Environment configuration**
+   ```bash
+   cd (path_to_folder)\peerlearn
+   ```
 
-   - Copy `frontend/.env.example` to `frontend/.env` and adjust if needed.
-   - Copy `backend/.env.example` to `backend/.env` and fill in:
-     - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`
-     - `MAILTRAP_HOST`, `MAILTRAP_PORT`, `MAILTRAP_USER`, `MAILTRAP_PASS`
-     - Other values can usually stay at their defaults for local development.
-
-3. **Install dependencies**
-
-   From the monorepo root (`peerlearn`):
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-4. **Seed data**
+3. Create environment files.
 
-   A seed script entry point is wired in the backend as `src/seed.js`. Once implemented, you can run:
+   There are no `.env.example` files in the repository, so create them manually.
+
+   `backend/.env` should include at least:
+
+   ```env
+   PORT=5000
+   FRONTEND_URL=http://localhost:5173
+   SUPABASE_URL=your-supabase-url
+   SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+   SUPABASE_ANON_KEY=your-supabase-anon-key
+   NODE_ENV=development
+   ```
+
+   `frontend/.env` can include frontend-specific variables if your app requires them, such as API base URL or feature toggles.
+
+4. Configure Supabase and database tables.
+   - The backend expects Supabase to manage the main data tables.
+   - Existing SQL schema and seed files are in `backend/src/db/` and `backend/src/db/migrations/`.
+
+5. Seed the backend data if needed:
 
    ```bash
    npm run seed
    ```
 
-5. **Run the app**
+   This runs the backend seed script from `backend/src/db/seed.js`.
 
-   From the monorepo root:
+---
 
-   ```bash
-   npm run dev
-   ```
+## Running the app
 
-   This will:
+From the project root, start both frontend and backend together:
 
-   - Start the backend on `http://localhost:5000`
-   - Start the frontend on `http://localhost:5173`
+```bash
+npm run dev
+```
+
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
+
+
+---
+
+## Available scripts
+
+From the root:
+
+- `npm run dev` — launch both backend and frontend concurrently
+- `npm run seed` — run backend seed script
+- `npm run start` — start the backend server only
+
+From `backend/`:
+
+- `npm run dev` — start backend with nodemon
+- `npm run start` — start backend with Node
+- `npm run seed` — run `backend/src/db/seed.js`
+
+From `frontend/`:
+
+- `npm run dev` — start Vite development server
+- `npm run build` — build production frontend
+- `npm run preview` — preview built app
+- `npm run lint` — run ESLint
+
+---
+
+## Backend API routes
+
+The backend exposes several route groups under `/api`:
+
+- `/api/auth`
+- `/api/users`
+- `/api/syllabus`
+- `/api/submissions`
+- `/api/search`
+- `/api/moderation`
+- `/api/ratings`
+- `/api/flags`
+- `/api/notifications`
+- `/api/admin`
+- `/api/progress`
+
+A health check endpoint is available at `/health`.
+
+---
+
+## Development notes
+
+- The backend uses Supabase client configuration in `backend/src/db/supabase.js`.
+- CORS is configured for `http://localhost:5173`, `http://localhost:3000`, and the `FRONTEND_URL` environment variable.
+- Error handling is centralized in `backend/src/middleware/errorHandler.js`.
+- The frontend is built with React components in `frontend/src`, including a UI library under `frontend/src/components/ui/`.
+
+---
+
+## Notes
+
+- If you do not have push access to the original repository, use a fork and submit a pull request.
+- Keep backend secrets out of source control by adding `.env` to `.gitignore`.
+- Verify that `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are present before starting the backend.
