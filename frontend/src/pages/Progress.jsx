@@ -181,6 +181,8 @@ function SubjectProgress({
               >
                 <button
                   type="button"
+                  aria-expanded={isOpen}
+                  aria-label={`Unit ${unit.number}: ${unit.name}`}
                   onClick={() =>
                     setOpenUnits((prev) => ({
                       ...prev,
@@ -254,6 +256,8 @@ function SubjectProgress({
                                   <button
                                     key={opt.value}
                                     type="button"
+                                    aria-pressed={active}
+                                    aria-label={`${topic.name}: ${opt.label}`}
                                     disabled={
                                       !userId || setProgress.isPending
                                     }
